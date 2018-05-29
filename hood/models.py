@@ -65,3 +65,26 @@ class Business(models.Model):
     @classmethod
     def update_business(cls,id,name):
         updated = Business.objects.filter(id=business.id).update(name=name)
+
+
+class Post(models.Model):
+    post = models.TextField()
+    author = models.ForeignKey(Userm,on_delete=models.CASCADE)
+    post_date =  models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.post
+
+    class Meta:
+        ordering=['-post_date']
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+
+    @classmethod
+    def get_post(cls):
+        post = Post.objects.all()
+        return post
