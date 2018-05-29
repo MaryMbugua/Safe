@@ -36,3 +36,32 @@ class Neighborhood(models.Model):
     def update_occupants(cls,id,occupants_count):
         occupied = Neighborhood.objects.filter(id=Neighborhood.id).update(occupants_count=occupants_count)
         return occupied
+
+class Business(models.Model):
+    name = models.CharField(max_length=60)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
+    business_email = models.EmailField(max_length=60)
+
+    def __str__(self):
+        return self.name
+    
+    def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def get_business(cls):
+        biz = Business.objects.all()
+        return biz
+
+    @classmethod
+    def find_business(cls,search_term):
+        business = cls.objects.filter(name__icontains=search_term)
+        return business
+
+    @classmethod
+    def update_business(cls,id,name):
+        updated = Business.objects.filter(id=business.id).update(name=name)
