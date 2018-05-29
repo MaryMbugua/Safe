@@ -88,3 +88,25 @@ class Post(models.Model):
     def get_post(cls):
         post = Post.objects.all()
         return post
+
+class Userm(models.Model):
+    name = models.CharField(max_length=60)
+    idnum = models.CharField(max_length=60)
+    profile_pic = models.ImageField(upload_to ='pics/',blank=True,null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
+    business = models.ForeignKey(Business,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    def save_user(self):
+        self.save()
+
+    def delete_user(self):
+        self.delete()
+    
+    @classmethod
+    def get_user(cls):
+        users = Userm.objects.all()
+        return users

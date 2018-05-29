@@ -79,7 +79,7 @@ class PostTestClass(TestCase):
         self.thome = Neighborhood(name='nyati',location='thome',occupants_count=5,admin=self.new_user)
         self.thome.save_neighborhood()
         #set up author class
-        self.nish = Userm(name="Mary Wairimu Mbugua",id="34487520",user=self.new_user,neighborhood=self.thome)
+        self.nish = Userm(name="Mary Wairimu Mbugua",idnum="34487520",user=self.new_user,neighborhood=self.thome)
         self.nish.save_user()
         #set up post class
         self.new_post=Post(post='Test testtttyyy post',author=self.nish)
