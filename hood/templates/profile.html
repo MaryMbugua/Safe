@@ -1,0 +1,51 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block content %}
+{{bock.super}}
+
+
+
+<style>
+   .jumbotron{
+       width: 50%;
+       margin-left: 3%;
+       background-color: #7CC196;
+       text-align: center;
+   }
+</style>
+
+<div class="container">
+        <div class="row">
+                <div class="col-xs-6 col-md-6 col-lg-6"> 
+                       <h2>Welcome, {user.username} </h2>
+                        <img src="" alt="profile pic" srcset="">
+                </div>
+
+                <div class="col-xs-6 col-md-6 col-lg-6">
+                    
+                    <h2>Your details</h2>
+                    
+                        <h4>Name</h4>
+                        <h4>Id Number</h4>
+                        <h4>Neighbourhood</h4>
+                        <h4>Business</h4>
+                    
+                
+                </div>
+              </div>
+              
+  
+
+</div>
+    
+<div class="jumbotron">
+    <h2>Your posts</h2>
+    
+       
+    
+
+</div>
+  
+        
+     
+{% endblock %}
