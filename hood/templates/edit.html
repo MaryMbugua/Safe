@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block content %}
+{{bock.super}}
+
+
+
+<style>
+ 
+   
+</style>
+    
+
+     <h3>
+         ppppsst
+
+     </h3>
+     <!-- form for editing the profile -->
+<div class="container">
+        <form  action="{%url 'edit'%}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+        
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-success btn-lg btns" value="Post">
+          </form>
+        
+    
+    </div>   
+{% endblock %}

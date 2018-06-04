@@ -7,6 +7,7 @@ from . import views
 urlpatterns=[
     url(r'^$',views.landing,name='landing'),
     url(r'^profile/$',views.profile,name='profile'),
+     url(r'^profile/edit/$',views.edit,name='edit'),
 ]
 
 if settings.DEBUG:
