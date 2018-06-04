@@ -6,8 +6,10 @@ from .forms import NewProfileForm,PostForm
 # Create your views here.
 
 def landing(request):
-    
-    return render(request,'index.html')
+    current_user = request.user
+    profile = Userm.get_user()
+    posts = Post.get_post()
+    return render(request,'index.html',{"posts":posts})
 
 def profile(request):
     current_user = request.user

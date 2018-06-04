@@ -16,12 +16,22 @@
    
 </style>
     
-
+    {% for post in posts %}
   <div class="jumbotron">
-    <h4>
-        post
-    </h4>
+      <div class="card card-default" style="margin-bottom:50px">
+          <div class="card-header">
+              {% if post.author.profile_pic %}
+                  <img src="{{post.author.profile_pic.url}}" alt="" class="img-fluid rounded-circle" style="width:10%;height:10%">
+                  <a href="#">{{post.editor}}</a>
+                  {% endif %}
+          </div>
+          <div class="card-body">
+              <p>{{post.post}}</p>
+          </div>
+          <div class="card-footer">
+              <p><b>{{post.post_date | timesince}} ago</b></p>
+          </div>
+      </div>
   </div>
-        
-     
+  {% endfor %}   
 {% endblock %}
