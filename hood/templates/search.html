@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block content %}
+{{bock.super}}
+
+
+
+<style>
+     .jumbotron{
+        
+        width: 50%;
+        margin-left: 25%;
+        background-color: #7CC196;
+        text-align: center;
+    }
+   .container{
+       text-align: centre;
+   }
+   h3,p{color: #ffffff;}
+   h2{color: #0C8346;}
+</style>
+    
+    <div class="container">
+            {% if biz %}
+            <h2>Found {{ biz|length }} of searched business {{message}}</h2>
+            {% else %}
+            <h2> Found 0 business for the search business {{message}}</h2>
+            {% endif %}
+    </div>
+    
+    <div class="jumbotron">
+            {% if biz %}
+            {% for business in biz %}
+            
+                    <h3>{{business.name}}</h3>
+                    <p>Email:{{business.business_email}}</p>
+           
+            
+            {% endfor %}
+            {% endif %}
+      </div>
+            
+         
+    
+{% endblock %}
