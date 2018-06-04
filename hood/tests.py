@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Neighborhood
+from .models import Neighborhood,Business,Userm,Post
 from django.contrib.auth.models import User
 
 
@@ -103,3 +103,35 @@ class PostTestClass(TestCase):
         self.kinyozi.delete_post()
         post =  Post.objects.all()
         self.assertTrue(len(post)<1)
+
+
+class UsermTestClass(TestCase):
+    def setUp(self):
+        #set up user class
+        self.new_user=User(username="nish",email="nish@gmail.com")
+        self.new_user.save()
+        #set up neighborhood class
+        self.thome = Neighborhood(name='nyati',location='thome',occupants_count=5,admin=self.new_user)
+        self.thome.save_neighborhood()
+        #set up userm class
+        self.nish = Userm(name="Mary Mbugua",id="34487520",user=self.new_user,neighborhood=self.thome)
+        self.nish.save()
+
+    def tearDown(self):
+        User.objects.all().delete()
+        Neighborhood.objects.all().delete()
+        Userm.objects.all().delete()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.nish,Userm))
+
+    def test_save_user(self):
+        self.nish.save_user()
+        users = Userm.objects.all()
+        self.assertTrue(len(users)>0)
+
+    def test_delete_user(self):
+        self.nish.save_user()
+        self.nish.delete_user()
+        users = Userm.objects.all()
+        self.assertTrue(len(users)<1)
