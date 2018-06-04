@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Userm,Neighborhood,Business
-from .forms import NewProfileForm
+from .models import Userm,Neighborhood,Business,Post
+from .forms import NewProfileForm,PostForm
 # Create your views here.
 
 def landing(request):
+    
     return render(request,'index.html')
 
 def profile(request):
@@ -44,5 +45,20 @@ def search_results(request):
         message = 'You havent searched for any term'
         return render(request,'search.html',{"message",message})
 
-
+def post(request):
+    current_user = request.user
+    userm = Userm.get_user()
+    for user in userm:
+        if user.user.id == current_user.id:
+            if request.method == 'POST':
+                post_form = PostForm(request.POST,request.FILES)
+                if post_form.is_valid():
+                    post = post_form.save(commit=False)
+                    post.author = user
+                    post.save()
+                    return redirect(landing)
+            else:
+                post_form = PostForm()
+            return render(request,'post.html',{"post_form":post_form})
+        
 
