@@ -4,18 +4,18 @@ from django.contrib.auth.decorators import login_required
 from .models import Userm,Neighborhood,Business,Post
 from .forms import NewProfileForm,PostForm
 # Create your views here.
-
+@login_required(login_url='/accounts/login/')
 def landing(request):
     current_user = request.user
     profile = Userm.get_user()
     posts = Post.get_post()
     return render(request,'index.html',{"posts":posts})
-
+@login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     profile = Userm.get_user()
     return render(request,'profile.html',{"profile":profile})
-
+@login_required(login_url='/accounts/login/')
 def edit(request):
     current_user = request.user
     profile=Userm.get_user()
@@ -30,12 +30,12 @@ def edit(request):
         form = NewProfileForm()
 
     return render(request,'edit.html',{"form":form})
-
+@login_required(login_url='/accounts/login/')
 def biz(request):
     current_user = request.user
     biz = Business.get_business()
     return render(request,'biz.html',{"biz":biz})
-
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'biz' in request.GET and request.GET["biz"]:
         search_term = request.GET.get("biz")
@@ -46,7 +46,7 @@ def search_results(request):
     else:
         message = 'You havent searched for any term'
         return render(request,'search.html',{"message",message})
-
+@login_required(login_url='/accounts/login/')
 def post(request):
     current_user = request.user
     userm = Userm.get_user()
