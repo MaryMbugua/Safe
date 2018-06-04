@@ -6,24 +6,36 @@
 
 
 <style>
- 
+ .container{
+     text-align: centre;
+ }
    
 </style>
     
-
-     <h3>
-         ppppsst
-
-     </h3>
+<div class="container">
+        <h3>
+                Update your Profile
+       
+            </h3>
+</div>
+     
+<hr>
      <!-- form for editing the profile -->
+
+        
+<h3>Personal Details</h3>
 <div class="container">
         <form  action="{%url 'edit'%}" method="post" enctype="multipart/form-data">
             {%csrf_token%}
         
             {% bootstrap_form form%}
-            <input type="submit" class="btn btn-success btn-lg btns" value="Post">
+            <input type="submit" class="btn btn-success btn-lg btns" value="Update">
           </form>
         
     
     </div>   
+<hr>
+    
+
+
 {% endblock %}

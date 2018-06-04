@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block content %}
+{{bock.super}}
+
+
+
+<style>
+     .jumbotron{
+        
+        width: 50%;
+        margin-left: 25%;
+        background-color: #7CC196;
+        text-align: center;
+    }
+   .container{
+       text-align: center;
+   }
+   h2{color: #0C8346;}
+   h3,h4{color: #ffffff;}
+</style>
+    
+
+  <div class="container">
+<h2>BUSINESSES IN YOUR AREA</h2>
+</div>
+{% for biz in biz %}
+<div class="jumbotron">
+    <h3>Name-{{biz.name}}</h3>
+    <h4>Email -{{biz.business_email}}</h4>
+
+      
+
+
+
+</div>
+{% endfor %}
+
+ 
+     
+{% endblock %}

@@ -7,7 +7,9 @@ from . import views
 urlpatterns=[
     url(r'^$',views.landing,name='landing'),
     url(r'^profile/$',views.profile,name='profile'),
-     url(r'^profile/edit/$',views.edit,name='edit'),
+    url(r'^profile/edit/$',views.edit,name='edit'),
+    url(r'^businesses/$',views.biz,name='biz'),
+    url(r'^search/$',views.search_results,name='search_results'),
 ]
 
 if settings.DEBUG:
